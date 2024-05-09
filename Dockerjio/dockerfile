@@ -1,0 +1,9 @@
+FROM ubuntu
+RUN apt update && apt upgrade -y
+RUN apt update
+RUN apt install nginx -y
+WORKDIR /var/www/html/
+ADD index.html .
+ADD https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrn_JB0sgYJ9uSJBsqjJ9_KkZYwpIJeDxBVPx6yfmAMw&s jio.jpg
+RUN chmod 644 jio.jpg
+CMD nginx -g 'daemon off;'

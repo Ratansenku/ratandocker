@@ -1,0 +1,18 @@
+FROM alpine
+WORKDIR /tmp
+ARG VERSION=1.8.0
+
+ARG ARGTEST=test
+ENV ENVTEST=test2
+
+ENV ARM_SUBSCRIPTION_ID="<azure_subscription_id>"
+ENV ARM_TENANT_ID="<azure_subscription_tenant_id>"
+ENV ARM_CLIENT_ID="<service_principal_appid>"
+ENV ARM_CLIENT_SECRET="<service_principal_password>"
+
+ENV BG=RED
+
+ADD https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip .
+RUN apk add unzip
+RUN unzip terraform_${VERSION}_linux_amd64.zip -d /usr/local/bin
+CMD [ "terraform" ]
